@@ -116,13 +116,12 @@ export default function HomePage() {
             >
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/80 text-sm font-medium px-4 py-1.5 rounded-full border border-white/20 mb-6">
                 <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                Interactive STEM Learning Platform
+                Interactive Geometry Learning
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
-                Visual{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">
-                  STEM AI
+                  Geometry
                 </span>
               </h1>
 
@@ -361,7 +360,7 @@ export default function HomePage() {
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
                 <Brain className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white font-semibold">Visual STEM AI</span>
+              <span className="text-white font-semibold">Geometry</span>
             </div>
             <p className="text-sm">
               Built to help students understand, not just memorize. Phase 1: Geometry.

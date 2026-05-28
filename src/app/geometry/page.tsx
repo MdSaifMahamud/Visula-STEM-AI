@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { BookOpen, Play, Shapes, ChevronDown } from 'lucide-react'
 import { lessons } from '@/lib/lessons'
 import type { Lesson } from '@/types/lesson'
@@ -129,43 +129,39 @@ export default function GeometryDashboard() {
         </div>
 
         {/* ── Triangle Types sub-section (collapsible) ─────────────────────── */}
-        <AnimatePresence>
-          {triangleExpanded && (
-            <motion.div
-              key="triangle-types"
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="overflow-hidden"
-            >
-              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg">△</div>
-                    <div>
-                      <h3 className="text-base font-bold text-slate-800">Triangle Types</h3>
-                      <p className="text-xs text-slate-500">Three triangles — each with unique properties and formula derivations</p>
-                    </div>
+        {triangleExpanded && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22 }}
+            className="mt-8"
+          >
+            <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-5">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg">△</div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-800 dark:text-slate-100">Triangle Types</h3>
+                    <p className="text-xs text-slate-500">Three triangles — each with unique properties and formula derivations</p>
                   </div>
-                  <button
-                    onClick={() => setTriangleExpanded(false)}
-                    className="text-xs text-slate-400 hover:text-slate-600 transition-colors px-2 py-1 rounded-lg hover:bg-emerald-100"
-                  >
-                    Close ✕
-                  </button>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {triangleSubTypes.map((lesson, i) => (
-                    <motion.div key={lesson.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
-                      <ShapeCard lesson={lesson} compact />
-                    </motion.div>
-                  ))}
-                </div>
+                <button
+                  onClick={() => setTriangleExpanded(false)}
+                  className="text-xs text-slate-400 hover:text-slate-600 transition-colors px-2 py-1 rounded-lg hover:bg-emerald-100"
+                >
+                  Close ✕
+                </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {triangleSubTypes.map((lesson, i) => (
+                  <motion.div key={lesson.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }}>
+                    <ShapeCard lesson={lesson} compact />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </section>
 
       {/* ── 3D Shapes ─────────────────────────────────────────────────────── */}

@@ -47,8 +47,8 @@ export default function Navbar() {
               <Brain className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-sm font-bold text-slate-900 dark:text-slate-100">Visual STEM AI</span>
-              <span className="text-[10px] text-slate-400 hidden sm:block">Interactive Learning</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-slate-100">Geometry</span>
+              <span className="text-[10px] text-slate-400 hidden sm:block">Learn Formulas Visually</span>
             </div>
           </Link>
 

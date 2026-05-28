@@ -10,7 +10,7 @@ interface TutorRequest {
   conversationHistory?: { role: 'user' | 'assistant'; content: string }[]
 }
 
-const SYSTEM_PROMPT = `You are a friendly and encouraging math teacher for Visual STEM AI.
+const SYSTEM_PROMPT = `You are a friendly and encouraging math teacher for Geometry.
 
 Your job is to help students understand geometry formulas VISUALLY — not just give them the formula.
 
