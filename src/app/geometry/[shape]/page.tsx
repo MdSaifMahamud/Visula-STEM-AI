@@ -32,6 +32,7 @@ const RectangleSimulation = dynamic(() => import('@/components/simulations/two-d
 const SquareSimulation = dynamic(() => import('@/components/simulations/two-d/SquareSimulation'), { ssr: false })
 const SemicircleSimulation = dynamic(() => import('@/components/simulations/two-d/SemicircleSimulation'), { ssr: false })
 const SectorSimulation = dynamic(() => import('@/components/simulations/two-d/SectorSimulation'), { ssr: false })
+const RhombusSimulation = dynamic(() => import('@/components/simulations/two-d/RhombusSimulation'), { ssr: false })
 
 // 3D Simulations (dynamic import with no SSR for Three.js)
 const CubeSimulation = dynamic(() => import('@/components/simulations/three-d/CubeSimulation'), { ssr: false })
@@ -56,6 +57,7 @@ function SimulationLoader({ shape, accentColor }: { shape: string; accentColor: 
     case 'square': return <SquareSimulation accentColor={accentColor} />
     case 'semicircle': return <SemicircleSimulation accentColor={accentColor} />
     case 'sector': return <SectorSimulation accentColor={accentColor} />
+    case 'rhombus': return <RhombusSimulation accentColor={accentColor} />
     case 'cube': return <CubeSimulation accentColor={accentColor} isCuboid={false} />
     case 'cuboid': return <CubeSimulation accentColor={accentColor} isCuboid={true} />
     case 'cylinder': return <CylinderSimulation accentColor={accentColor} />
@@ -126,13 +128,13 @@ function LessonPage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm text-slate-500 mb-5">
-        <Link href="/geometry" className="flex items-center gap-1 hover:text-slate-800 transition-colors">
+      <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-5">
+        <Link href="/geometry" className="flex items-center gap-1 hover:text-slate-800 dark:hover:text-slate-200 transition-colors">
           <ChevronLeft className="w-4 h-4" />
           Geometry
         </Link>
         <span>/</span>
-        <span className="text-slate-800 font-medium">{lesson.title}</span>
+        <span className="text-slate-800 dark:text-slate-200 font-medium">{lesson.title}</span>
       </div>
 
       {/* Page header */}
@@ -150,7 +152,7 @@ function LessonPage() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
-              <h1 className="text-2xl font-extrabold text-slate-900">{lesson.title}</h1>
+              <h1 className="text-2xl font-extrabold text-slate-900 dark:text-slate-50">{lesson.title}</h1>
               <span className={`badge ${lesson.shapeType === '2D' ? 'badge-blue' : 'badge-purple'}`}>
                 {lesson.shapeType}
               </span>
@@ -186,7 +188,7 @@ function LessonPage() {
         {/* Left column: Simulation / Main content */}
         <div className="lg:col-span-2 space-y-5">
           {/* Tab navigation */}
-          <div className="flex bg-white border border-slate-200 rounded-2xl p-1.5 gap-1 shadow-sm">
+          <div className="flex bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-1.5 gap-1 shadow-sm">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
@@ -194,7 +196,7 @@ function LessonPage() {
                 className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-sm font-semibold transition-all
                   ${activeTab === tab.key
                     ? 'text-white shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700'}`}
                 style={activeTab === tab.key ? { backgroundColor: lesson.color } : {}}
               >
                 <tab.icon className="w-3.5 h-3.5" />
@@ -247,7 +249,7 @@ function LessonPage() {
         <div className="space-y-5">
           {/* Formula card */}
           <div className="card space-y-4">
-            <h3 className="text-base font-semibold text-slate-800">Formula</h3>
+            <h3 className="text-base font-semibold text-slate-800 dark:text-slate-100">Formula</h3>
             <div
               className="rounded-xl px-5 py-4 font-mono text-xl font-bold text-center"
               style={{ backgroundColor: `${lesson.color}12`, color: lesson.color }}
@@ -268,7 +270,7 @@ function LessonPage() {
 
           {/* Real-life examples */}
           <div className="card">
-            <h3 className="text-sm font-semibold text-slate-800 mb-3">Real-Life Examples</h3>
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-3">Real-Life Examples</h3>
             <div className="flex flex-wrap gap-2">
               {lesson.realLifeExamples.map((ex) => (
                 <span
