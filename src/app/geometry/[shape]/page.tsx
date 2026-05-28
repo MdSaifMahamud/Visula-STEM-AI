@@ -7,7 +7,6 @@ import { motion } from 'framer-motion'
 import { BookOpen, Brain, Target, Info, ChevronLeft, Lock } from 'lucide-react'
 import Link from 'next/link'
 import { getLessonByShape } from '@/lib/lessons'
-import { getQuizByLessonId } from '@/lib/quizData'
 
 // Wrapper ensures useSearchParams is inside a Suspense boundary (required by Next.js 14)
 export default function LessonPageWrapper() {
@@ -18,7 +17,7 @@ export default function LessonPageWrapper() {
   )
 }
 import FormulaStepViewer from '@/components/formula/FormulaStepViewer'
-import QuizCard from '@/components/quiz/QuizCard'
+import AIQuizCard from '@/components/quiz/AIQuizCard'
 import AITutorPanel from '@/components/ai/AITutorPanel'
 
 // 2D Simulations
@@ -74,7 +73,6 @@ function LessonPage() {
   const defaultTab = searchParams.get('tab') === 'quiz' ? 'quiz' : 'simulation'
 
   const lesson = getLessonByShape(shapeParam)
-  const quiz = lesson ? getQuizByLessonId(lesson.id) : undefined
 
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab as Tab)
 
@@ -206,19 +204,13 @@ function LessonPage() {
             )}
 
             {activeTab === 'quiz' && (
-              quiz ? (
-                <QuizCard
-                  quiz={quiz}
-                  lessonId={lesson.id}
-                  shapeName={lesson.shape}
-                  accentColor={lesson.color}
-                />
-              ) : (
-                <div className="text-center py-10 text-slate-400">
-                  <Target className="w-10 h-10 mx-auto mb-3" />
-                  <p className="font-medium">Quiz coming soon for this lesson!</p>
-                </div>
-              )
+              <AIQuizCard
+                lessonId={lesson.id}
+                lessonTitle={lesson.title}
+                shapeName={lesson.shape}
+                formula={lesson.formula}
+                accentColor={lesson.color}
+              />
             )}
 
             {activeTab === 'ai-tutor' && (
