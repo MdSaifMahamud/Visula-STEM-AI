@@ -27,6 +27,7 @@ export interface Lesson {
   derivationSteps: FormulaStep[]
   routePath: string
   available: boolean
+  parentId?: string
 }
 
 export interface Progress {

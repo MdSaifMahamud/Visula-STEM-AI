@@ -23,14 +23,23 @@ import AITutorPanel from '@/components/ai/AITutorPanel'
 // 2D Simulations
 const CircleSimulation = dynamic(() => import('@/components/simulations/two-d/CircleSimulation'), { ssr: false })
 const TriangleSimulation = dynamic(() => import('@/components/simulations/two-d/TriangleSimulation'), { ssr: false })
+const EquilateralTriangleSimulation = dynamic(() => import('@/components/simulations/two-d/EquilateralTriangleSimulation'), { ssr: false })
+const IsoscelesTriangleSimulation = dynamic(() => import('@/components/simulations/two-d/IsoscelesTriangleSimulation'), { ssr: false })
+const ScaleneTriangleSimulation = dynamic(() => import('@/components/simulations/two-d/ScaleneTriangleSimulation'), { ssr: false })
 const ParallelogramSimulation = dynamic(() => import('@/components/simulations/two-d/ParallelogramSimulation'), { ssr: false })
 const TrapeziumSimulation = dynamic(() => import('@/components/simulations/two-d/TrapeziumSimulation'), { ssr: false })
+const RectangleSimulation = dynamic(() => import('@/components/simulations/two-d/RectangleSimulation'), { ssr: false })
+const SquareSimulation = dynamic(() => import('@/components/simulations/two-d/SquareSimulation'), { ssr: false })
+const SemicircleSimulation = dynamic(() => import('@/components/simulations/two-d/SemicircleSimulation'), { ssr: false })
+const SectorSimulation = dynamic(() => import('@/components/simulations/two-d/SectorSimulation'), { ssr: false })
 
 // 3D Simulations (dynamic import with no SSR for Three.js)
 const CubeSimulation = dynamic(() => import('@/components/simulations/three-d/CubeSimulation'), { ssr: false })
 const CylinderSimulation = dynamic(() => import('@/components/simulations/three-d/CylinderSimulation'), { ssr: false })
 const ConeSimulation = dynamic(() => import('@/components/simulations/three-d/ConeSimulation'), { ssr: false })
 const SphereSimulation = dynamic(() => import('@/components/simulations/three-d/SphereSimulation'), { ssr: false })
+const HemisphereSimulation = dynamic(() => import('@/components/simulations/three-d/HemisphereSimulation'), { ssr: false })
+const PyramidSimulation = dynamic(() => import('@/components/simulations/three-d/PyramidSimulation'), { ssr: false })
 
 type Tab = 'simulation' | 'derivation' | 'quiz' | 'ai-tutor'
 
@@ -38,13 +47,22 @@ function SimulationLoader({ shape, accentColor }: { shape: string; accentColor: 
   switch (shape.toLowerCase()) {
     case 'circle': return <CircleSimulation accentColor={accentColor} />
     case 'triangle': return <TriangleSimulation accentColor={accentColor} />
+    case 'equilateral triangle': return <EquilateralTriangleSimulation accentColor={accentColor} />
+    case 'isosceles triangle': return <IsoscelesTriangleSimulation accentColor={accentColor} />
+    case 'scalene triangle': return <ScaleneTriangleSimulation accentColor={accentColor} />
     case 'parallelogram': return <ParallelogramSimulation accentColor={accentColor} />
     case 'trapezium': return <TrapeziumSimulation accentColor={accentColor} />
+    case 'rectangle': return <RectangleSimulation accentColor={accentColor} />
+    case 'square': return <SquareSimulation accentColor={accentColor} />
+    case 'semicircle': return <SemicircleSimulation accentColor={accentColor} />
+    case 'sector': return <SectorSimulation accentColor={accentColor} />
     case 'cube': return <CubeSimulation accentColor={accentColor} isCuboid={false} />
     case 'cuboid': return <CubeSimulation accentColor={accentColor} isCuboid={true} />
     case 'cylinder': return <CylinderSimulation accentColor={accentColor} />
     case 'cone': return <ConeSimulation accentColor={accentColor} />
     case 'sphere': return <SphereSimulation accentColor={accentColor} />
+    case 'hemisphere': return <HemisphereSimulation accentColor={accentColor} />
+    case 'pyramid': return <PyramidSimulation accentColor={accentColor} />
     default:
       return (
         <div className="flex flex-col items-center justify-center h-48 text-slate-400 gap-3">
